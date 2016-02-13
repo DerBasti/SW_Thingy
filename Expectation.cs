@@ -211,7 +211,7 @@ namespace SW_Thingy
             if (!runFailedFlag)
             {
                 MouseInterface.randomizeClickInArea(ws, ps);
-                timeout = (int)500 + (int)(r.NextDouble() * 200);
+                timeout = (int)1000 + (int)(r.NextDouble() * 200);
                 System.Threading.Thread.Sleep(timeout);
                 Expectation.current = new DropScreenExpectation();
             }
@@ -235,11 +235,17 @@ namespace SW_Thingy
 
             ps.from.y = ps.to.y = 0.79087f;
 
-            float percentage = WindowDetection.castRay(bmp, PercentageF.ToCoordinate(bmp, ps.from),
+            float buttonPercentage = WindowDetection.castRay(bmp, PercentageF.ToCoordinate(bmp, ps.from),
                 PercentageF.ToCoordinate(bmp, ps.to), Color.FromArgb(255, backgroundColor));
 
-            buttonAmount = (int)(percentage / 0.33f);
-            return true; //If previous things aligned
+            //
+            ps.from.y = ps.to.y = 0.29718f;
+            float windowPercentage = WindowDetection.castRay(bmp, PercentageF.ToCoordinate(bmp, ps.from),
+                PercentageF.ToCoordinate(bmp, ps.to), Color.FromArgb(255, backgroundColor));
+
+
+            buttonAmount = (int)(buttonPercentage / 0.33f);
+            return buttonAmount > 0 && windowPercentage > 0.8f; //If previous things aligned
         }
         public override void action(WindowDetection.Structure ws)
         {

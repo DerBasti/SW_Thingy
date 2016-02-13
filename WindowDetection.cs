@@ -181,6 +181,7 @@ namespace SW_Thingy
                     IntPtr hdc = image.GetHdc();
                     IntPtr srcDC = g.GetHdc();
                     BitBlt(hdc, 0, 0, ws.currentFrame.Width, ws.currentFrame.Height, srcDC, 0, 0, 0xCC0020);
+                    image.ReleaseHdc();
                 }
             }
         }
