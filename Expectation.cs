@@ -59,8 +59,7 @@ namespace SW_Thingy
             float firstRowPercentage = WindowDetection.castRay(bmp, from, to, Color.FromArgb(255, 225, 195, 118));
             float secondRowPercentage = WindowDetection.castRay(bmp, fromSecond, toSecond, Color.FromArgb(255, 211, 165, 73));
 
-            //return (firstRowPercentage > 0.8f && secondRowPercentage > 0.9f);
-            return true;
+            return (firstRowPercentage > 0.8f && secondRowPercentage > 0.9f);
         }
 
         public override void action(WindowDetection.Structure ws)
